@@ -4,18 +4,19 @@
 ## This function creates a special "matrix" object that can cache its inverse.
 
 makeCacheMatrix <- function(a = matrix()) {
-	  x <- matrix(a,nrow = 4,ncol = 4)
-        m <- NULL
-        set <- function(y) {
-                x <<- matrix(y,nrow = 4,ncol = 4)
-                m <<- NULL
+	x <- matrix(a,nrow = 4,ncol = 4)
+    m <- NULL
+    set <- function(y) {
+        x <<- matrix(y,nrow = 4,ncol = 4)
+        m <<- NULL
         }
-        get <- function() x
-        setinv <- function(inv) m <<- inv
-        getinv <- function() m
-        list(set = set, get = get,
-             setinv = setinv ,
-             getinv = getinv )
+    get <- function() x
+    setinv <- function(inv) m <<- inv
+    getinv <- function() m
+    list(set = set, 
+		 get = get,
+         setinv = setinv ,
+         getinv = getinv )
 }
 
 
@@ -26,9 +27,9 @@ makeCacheMatrix <- function(a = matrix()) {
 
 
 cacheSolve <- function(x, ...) {
-        m <- x$getinv()
+		m <- x$getinv()
         if(!is.null(m)) {
-                message("getting cached data")
+				message("getting cached data")
                 return(m)
         }
         data <- x$get()
